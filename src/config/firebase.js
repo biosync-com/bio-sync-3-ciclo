@@ -1,6 +1,7 @@
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import { getApps, getApp } from 'firebase/app';
 
 const firebaseConfig = {
   apiKey: "AIzaSyAa8atbXwwofrRgmHHXTcnvAiyVvMv2Oyo",
@@ -12,7 +13,7 @@ const firebaseConfig = {
   measurementId: "G-T1RVV2X796"
 };
 
-const app = initializeApp(firebaseConfig);
+const app = !getApps().length ? initializeApp(firebaseConfig) : getApp(); // Esta é a condicional
 
 // Firestore (Banco de dados)
 const db = getFirestore(app);
