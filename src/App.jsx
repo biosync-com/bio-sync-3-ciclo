@@ -8,6 +8,8 @@ import LoginModal from "./components/LoginModal.jsx";
 import RegistroDeUsuarios from "./pages/Register/UserRegister.jsx";
 import CatadorRegister from './pages/Register/CatadorRegister';
 import Header from "./components/Header.jsx";
+import AccessibilityTheme from "./components/AccessibilityTheme.jsx";
+import ThemeProvider from "./context/AccessibilityThemeContext.jsx";    
 import Footer from "./components/Footer.jsx";
 import Agendamentos from "./pages/Agendamentos/Agendamentos.jsx";
 import Conteudos from "./pages/Conteudos/Conteudos.jsx";
@@ -18,6 +20,7 @@ import VLibras from "./components/VLibras.jsx";
 function App() {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [showUpdate, setShowUpdate] = useState(false);
+  const [isThemeOpen, setIsThemeOpen] = useState(false);
 
   useEffect(() => {
     serviceWorkerRegistration.register({
@@ -45,6 +48,7 @@ function App() {
         <ConditionalHeader openLoginModal={() => setIsLoginModalOpen(true)} />
         <Routes>
           <Route path="/" element={<Home openLoginModal={() => setIsLoginModalOpen(true)} />} />
+          <Route path="/AccessibilityTheme" element={<AccessibilityTheme />} />
           <Route path="/ButtonsUserRegister" element={<ButtonsUserRegister />} />
           <Route path="/dropPoints" element={<PontosDeDescarte />} />
           <Route path="/UserRegister" element={<RegistroDeUsuarios />} />
@@ -61,6 +65,7 @@ function App() {
           </div>
         )}
         <LoginModal isOpen={isLoginModalOpen} onClose={() => setIsLoginModalOpen(false)} />
+        <AccessibilityTheme isOpen={isThemeOpen} onClose={() => setIsThemeOpen(false)} />
         <ConditionalFooter />
         <VLibras />
       </div>
